@@ -15,7 +15,7 @@ class Ingredient
 
     # this gives the ability to do find an ingredient object and look through is drinks
     # takes in a ingredient string and returns an object with mehtods that can be call on.  
-    def find_by_ingredient(ingredient)
+    def self.find_by_ingredient(ingredient)
         @@all.find{ |i| i.name == ingredient} 
     end 
 end 
