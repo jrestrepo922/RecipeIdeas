@@ -14,6 +14,5 @@ class Api
             new_meal = Meal.new(name: meal["strMeal"], meal_id: meal["idMeal"], ingredient: ingredient)
             new_ingredient.meals << new_meal
         end 
-        binding.pry 
     end 
 end 
