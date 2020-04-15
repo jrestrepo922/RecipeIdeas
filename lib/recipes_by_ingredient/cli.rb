@@ -7,36 +7,42 @@ class Cli
         self.prompt_ingredient
 
         self.prompt 
-        
+
         #need to take in the new input from the choices provided 
         input = gets.strip.downcase
         
         ## options base on the input taken. Remember to use validation 
             #if a number is typed
-        if input.to_i > 0 && input.to_i <= Ingredient.find_by_ingredient(@ingredient).meals.length
-            # I can see that the meal objects provided by Ingredient.find_by_ingredient(@ingredient).meals have meal_id
-            # this meal_id needs to get pass to the api
-            meal = Ingredient.find_by_ingredient(@ingredient).meals[input.to_i - 1]
 
-            # needs to check if that recepy was already created. We do not want to create something that is already created.
-            Api.get_meal_details(meal)  
+        while input != 'exit'
+
+            if input.to_i > 0 && input.to_i <= Ingredient.find_by_ingredient(@ingredient).meals.length
+                # I can see that the meal objects provided by Ingredient.find_by_ingredient(@ingredient).meals have meal_id
+                # this meal_id needs to get pass to the api
+                meal = Ingredient.find_by_ingredient(@ingredient).meals[input.to_i - 1]
+
+                # needs to check if that recepy was already created. We do not want to create something that is already created.
+                Api.get_meal_details(meal)  
 
 
-            self.provide_meal_recipe(meal)
+                self.provide_meal_recipe(meal)
 
-            
+            #elsif  #if list is typed
 
-        #elsif  #if list is typed
-            
-        #elsif  #if ingredient is typed
+            #elsif  #if ingredient is typed
 
-        #elsif  #if exit was typed 
+            #elsif  #if exit was typed 
 
-        else   #if something else was typed
-            puts " "
-            puts " Please choose one of the options provided above"
-            puts " "
+            else   #if something else was typed
+                puts " "
+                puts " Please choose one of the options provided above"
+                puts " "
+            end 
+            prompt
+            input = gets.strip.downcase
         end 
+        puts " "
+        puts "Farewell you aspiring cook"
     end 
 
     def display_meals(meals)
