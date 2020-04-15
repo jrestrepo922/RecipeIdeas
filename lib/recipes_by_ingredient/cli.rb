@@ -2,7 +2,7 @@ class Cli
 
     def run
         puts " "
-        puts "Welcome to the RecepiesByIngredient App!"
+        puts "Welcome to the RecipesByIngredient App!"
 
         self.prompt_ingredient
 
@@ -96,8 +96,16 @@ class Cli
         #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
             #we can solve this issue by using Ingredient.find_by_ingredient
             #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
-            binding.pry 
-        self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
+        binding.pry 
+        if Ingredient.find_by_ingredient(@ingredient)
+            self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
+        else
+            puts " "
+            puts "The ingredient you provided was not valid."
+            puts " "
+            puts "Some popular ingredients you can try are: chicken, salmon, beef, pork, avocado"
+            puts " "
+        end 
     end 
 
 end 

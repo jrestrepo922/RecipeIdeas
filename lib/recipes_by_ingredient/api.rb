@@ -13,13 +13,7 @@ class Api
             meals.each do |meal|
                 new_meal = Meal.new(name: meal["strMeal"], meal_id: meal["idMeal"], ingredient: ingredient)
                 new_ingredient.meals << new_meal
-            end 
-        else
-            puts " "
-            puts "The ingredient you provided was not valid."
-            puts " "
-            puts "Some popular ingredients you can try are: chicken, salmon, beef, pork, avocado"
-            puts " "
+            end
         end 
      
 
