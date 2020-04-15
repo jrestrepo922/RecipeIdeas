@@ -29,9 +29,9 @@ class Api
         meal_details.keys.each do |key|
             # will be shoveling into the meal.ingredients (instance variable that is an empty array)
             # what will be shoveling is the values of the the keys with the name ingredient in them and that are not am empty string
-            meal.ingredients << meal_details[key] if (key.include?("Ingredient")) && (meal_details[key] != "" || meal_details[key] != " " || meal_details[key] != nil  )
+            meal.ingredients << meal_details[key] if (key.include?("Ingredient")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
 
-            meal.measures << meal_details[key] if (key.include?("Measure")) && (meal_details[key] != "" || meal_details[key] != " " || meal_details[key] != nil  )
+            meal.measures << meal_details[key] if (key.include?("Measure")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
 
                 
         end 
