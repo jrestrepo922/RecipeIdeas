@@ -28,14 +28,15 @@ class Cli
                 self.provide_meal_recipe(meal) 
 
             elsif input == "list"  
+
                 self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
-            #elsif  #if ingredient is typed
 
-            #elsif  #if exit was typed 
+            elsif  input == "ingredient"  
 
-            else   #if something else was typed
+                prompt_ingredient
+            else   
                 puts " "
-                puts " Please choose one of the options provided above"
+                puts " Please try again and choose one of the options given."
                 puts " "
             end 
             prompt
