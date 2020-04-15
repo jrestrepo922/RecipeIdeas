@@ -6,14 +6,9 @@ class Cli
 
         self.prompt_ingredient
 
-        #now that we have the list we want to tell user there options
-        puts " "
-        puts "Pick a number to see the recipe, type 'ingredient' and provide ingredient to see a new list of plates"
-        puts " "
-        puts "type 'list' to see the list again and type 'exit' to exit"
-        puts " "
+        self.prompt 
+        
         #need to take in the new input from the choices provided 
-
         input = gets.strip.downcase
         
         ## options base on the input taken. Remember to use validation 
@@ -73,7 +68,12 @@ class Cli
     end 
 
     def prompt
-
+          #now that we have the list we want to tell user there options
+          puts " "
+          puts "Pick a number to see the recipe, type 'ingredient' and provide ingredient to see a new list of plates"
+          puts " "
+          puts "type 'list' to see the list again and type 'exit' to exit"
+          puts " "      
     end 
 
     def prompt_ingredient
@@ -92,4 +92,5 @@ class Cli
             #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
         self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
     end 
+
 end 
