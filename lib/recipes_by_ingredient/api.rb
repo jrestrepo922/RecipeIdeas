@@ -3,17 +3,26 @@ class Api
     def self.get_meals(ingredient)
         url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=#{ingredient}"
         response = Net::HTTP.get(URI(url)) 
-
         meals = JSON.parse(response)["meals"] # provides and array of meals base on ingredient provided
         
-
-        #now we want to make objects out the arrary fill with hashes
-        # will take the name of the meal and the id of the meal to get the details
-        new_ingredient = Ingredient.new(ingredient) #instance of ingredient is created
-        meals.each do |meal|
-            new_meal = Meal.new(name: meal["strMeal"], meal_id: meal["idMeal"], ingredient: ingredient)
-            new_ingredient.meals << new_meal
+        if meals != nil 
+            #binding.pry 
+            #now we want to make objects out the arrary fill with hashes
+            # will take the name of the meal and the id of the meal to get the details
+            new_ingredient = Ingredient.new(ingredient) #instance of ingredient is created
+            meals.each do |meal|
+                new_meal = Meal.new(name: meal["strMeal"], meal_id: meal["idMeal"], ingredient: ingredient)
+                new_ingredient.meals << new_meal
+            end 
+        else
+            puts " "
+            puts "The ingredient you provided was not valid."
+            puts " "
+            puts "Some popular ingredients you can try are: chicken, salmon, beef, pork, avocado"
+            puts " "
         end 
+     
+
     end 
 
 
@@ -44,7 +53,7 @@ class Api
             meal.video = meal_details[key] if (key.include?("Youtube")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)  
         end 
     meal    
-    binding.pry
+
     end 
 
 

@@ -43,7 +43,8 @@ class Cli
             input = gets.strip.downcase
         end 
         puts " "
-        puts "Farewell you aspiring cook"
+        puts "Farewell you aspiring cook!!"
+        puts " "
     end 
 
     def display_meals(meals)
@@ -77,17 +78,15 @@ class Cli
     def prompt
           #now that we have the list we want to tell user there options
           puts " "
-          puts "Pick a number to see the recipe, type 'ingredient' and provide ingredient to see a new list of plates"
-          puts " "
-          puts "type 'list' to see the list again and type 'exit' to exit"
-          puts " "      
+          puts "Pick a number to see the recipe, type 'ingredient' and provide ingredient to see a new list of plates,"
+          puts "type 'list' to see the list again and type 'exit' to exit."  
     end 
 
     def prompt_ingredient
         puts " "
         puts "Please provide and ingredient so we can provide you a list of tasty recipies"
         puts " "
-        @ingredient = gets.strip.downcase 
+        @ingredient = gets.strip.downcase.gsub(" ","_")
 
         #this class method along with Meal class will make a bunch of ojects
         Api.get_meals(@ingredient)
@@ -97,6 +96,7 @@ class Cli
         #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
             #we can solve this issue by using Ingredient.find_by_ingredient
             #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
+            binding.pry 
         self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
     end 
 
