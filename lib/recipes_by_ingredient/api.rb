@@ -43,7 +43,7 @@ class Api
 
             meal.video = meal_details[key] if (key.include?("Youtube")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)  
         end 
-    binding.pry     
+    meal     
     end 
 
 

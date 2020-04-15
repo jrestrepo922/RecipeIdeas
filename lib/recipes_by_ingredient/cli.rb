@@ -36,10 +36,14 @@ class Cli
             # this meal_id needs to get pass to the api
             meal = Ingredient.find_by_ingredient(@ingredient).meals[input.to_i - 1]
 
+            # needs to check if that recepy was already created. We do not want to create something that is already created.
+            Api.get_meal_details(meal)  
 
 
-            
-            Api.get_meal_details(meal)
+            self.provide_meal_recipe(meal)
+
+
+
         #elsif  #if list is typed
             
         #elsif  #if ingredient is typed
@@ -58,5 +62,26 @@ class Cli
             puts "#{index + 1}.  #{meal.name}"
         }
 
+    end 
+
+  
+    def provide_meal_recipe(meal)
+    
+        puts " "
+        puts "-----------#{meal.name}-----------"
+        puts " "
+        puts "Picture Link: #{meal.picture}"
+        puts " "
+        puts "Catergory: #{meal.category}"
+        puts " "
+        puts "Ingredients and their quantities"
+        meal.ingredients.each_with_index do |ingredient, index|
+            puts "#{ingredient} - #{meal.measures[index]}"
+        end 
+        puts " "
+        puts "Instructions: #{meal.instructions}"
+        puts " " 
+        puts "Video: #{meal.video}" if meal.video
+        puts " " if meal.video
     end 
 end 
