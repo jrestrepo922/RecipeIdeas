@@ -18,7 +18,7 @@ require 'json'
 
 ## Starting Out the APP 
 
-To start the APP please put in the terminal ```ruby ruby bin/meals ``` and follow the prompt instructions. 
+To start the APP please put in the terminal ```ruby bin/meals``` and follow the prompt instructions. 
 
 
 
