@@ -22,13 +22,13 @@ class Cli
                 meal = Ingredient.find_by_ingredient(@ingredient).meals[input.to_i - 1]
 
                 # needs to check if that recepy was already created. We do not want to create something that is already created.
-                Api.get_meal_details(meal)  
+                Api.get_meal_details(meal) if !meal.instructions 
 
 
-                self.provide_meal_recipe(meal)
+                self.provide_meal_recipe(meal) 
 
-            #elsif  #if list is typed
-
+            elsif input == "list"  
+                self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
             #elsif  #if ingredient is typed
 
             #elsif  #if exit was typed 
