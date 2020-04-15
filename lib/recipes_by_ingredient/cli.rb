@@ -109,4 +109,6 @@ class Cli
         end 
     end 
 
+    def 2puts 
+
 end 
