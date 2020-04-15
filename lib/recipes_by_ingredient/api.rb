@@ -15,4 +15,13 @@ class Api
             new_ingredient.meals << new_meal
         end 
     end 
+
+
+    def self.get_meal_details(meal)
+        url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{meal.meal_id}"
+        response = Net::HTTP.get(URI(url)) 
+
+        meal_details = JSON.parse(response)["meals"] 
+        binding.pry 
+    end 
 end 

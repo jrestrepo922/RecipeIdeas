@@ -31,13 +31,20 @@ class Cli
         
         ## options base on the input taken. Remember to use validation 
             #if a number is typed
-        if input > 0 && input <= Ingredient.find_by_ingredient(@ingredient).meals.length
-            
-        elsif  #if list is typed
-            
-        elsif  #if ingredient is typed
+        if input.to_i > 0 && input.to_i <= Ingredient.find_by_ingredient(@ingredient).meals.length
+            # I can see that the meal objects provided by Ingredient.find_by_ingredient(@ingredient).meals have meal_id
+            # this meal_id needs to get pass to the api
+            meal = Ingredient.find_by_ingredient(@ingredient).meals[input.to_i - 1]
 
-        elsif  #if exit was typed 
+
+
+            
+            Api.get_meal_details(meal)
+        #elsif  #if list is typed
+            
+        #elsif  #if ingredient is typed
+
+        #elsif  #if exit was typed 
 
         else   #if something else was typed
             puts " "
