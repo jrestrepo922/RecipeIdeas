@@ -50,6 +50,4 @@ class Api
 
     end 
 
-
-
 end 

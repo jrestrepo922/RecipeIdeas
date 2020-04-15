@@ -26,7 +26,7 @@ class Cli
 
 
                 self.provide_meal_recipe(meal) 
-
+                binding.pry
             elsif input == "list"  
 
                 self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
@@ -96,7 +96,7 @@ class Cli
         #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
             #we can solve this issue by using Ingredient.find_by_ingredient
             #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
-        if Ingredient.find_by_ingredient(@ingredient)
+        if Ingredient.find_by_ingredient(@ingredient) && (@ingredient != ""  && @ingredient != " " && @ingredient != nil)
             self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
         else
             puts " "
@@ -109,6 +109,6 @@ class Cli
         end 
     end 
 
-    def 2puts 
+    
 
 end 
