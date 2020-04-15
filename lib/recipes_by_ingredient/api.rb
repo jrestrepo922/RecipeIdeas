@@ -33,7 +33,15 @@ class Api
 
             meal.measures << meal_details[key] if (key.include?("Measure")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
 
-                
+            meal.category = meal_details[key] if (key.include?("Category")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
+
+            meal.area = meal_details[key] if (key.include?("Area")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
+            
+            meal.instructions = meal_details[key].gsub(/\r\n/, " ") if (key.include?("Instructions")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
+
+            meal.picture = meal_details[key] if (key.include?("MealThumb")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)
+
+            meal.video = meal_details[key] if (key.include?("Youtube")) && (meal_details[key] != "" && meal_details[key] != " " && meal_details[key] != nil)  
         end 
     binding.pry     
     end 
