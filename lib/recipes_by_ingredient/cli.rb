@@ -4,21 +4,8 @@ class Cli
         puts " "
         puts "Welcome to the RecepiesByIngredient App!"
 
+        self.prompt_ingredient
 
-        puts " "
-        puts "Please provide and ingredient so we can provide you a list of tasty recipies"
-        puts " "
-        @ingredient = gets.strip.downcase 
-
-        #this class method along with Meal class will make a bunch of ojects
-        Api.get_meals(@ingredient)
-        puts " "
-        #what do we want to do with this objecst? 
-        #we want to provide a list will do that in a method 
-        #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
-            #we can solve this issue by using Ingredient.find_by_ingredient
-            #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
-        self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
         #now that we have the list we want to tell user there options
         puts " "
         puts "Pick a number to see the recipe, type 'ingredient' and provide ingredient to see a new list of plates"
@@ -42,7 +29,7 @@ class Cli
 
             self.provide_meal_recipe(meal)
 
-
+            
 
         #elsif  #if list is typed
             
@@ -83,5 +70,26 @@ class Cli
         puts " " 
         puts "Video: #{meal.video}" if meal.video
         puts " " if meal.video
+    end 
+
+    def prompt
+
+    end 
+
+    def prompt_ingredient
+        puts " "
+        puts "Please provide and ingredient so we can provide you a list of tasty recipies"
+        puts " "
+        @ingredient = gets.strip.downcase 
+
+        #this class method along with Meal class will make a bunch of ojects
+        Api.get_meals(@ingredient)
+        puts " "
+        #what do we want to do with this objecst? 
+        #we want to provide a list will do that in a method 
+        #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
+            #we can solve this issue by using Ingredient.find_by_ingredient
+            #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
+        self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
     end 
 end 
