@@ -1,8 +1,11 @@
 class Cli 
 
-    def run
+    def welcome
         puts " "
         puts "Welcome to the RecipesByIngredient App!"
+    end 
+
+    def run
 
         self.prompt_ingredient
 
@@ -90,25 +93,27 @@ class Cli
         
         @ingredient = gets.strip.downcase.gsub(" ","_")
 
+        # this will only make it to the get meals class method of the Api class if is not an empty string 
         if (@ingredient == ""  ||  @ingredient == " " || @ingredient == nil)
             puts "Input can not be left blank."
             puts " "
 
-            prompt_ingredient
+            self.run 
              
         end 
 
         #this class method along with Meal class will make a bunch of ojects
 
     
-        meals = Api.get_meals(@ingredient)
+       valdiate_meals = Api.get_meals(@ingredient)
         # if @ingredient = dfasdfasdfa than meals = nil 
         # if meals == nil than rerun this entire thing. 
 
-        if !meals 
-            prompt_ingredient 
+        if !valdiate_meals
+            self.run
+            
         end 
-
+       
 
         
         #what do we want to do with this objecst? 
@@ -127,6 +132,7 @@ class Cli
 
             #prompt_ingredient
         #end 
+
     end 
 
     
