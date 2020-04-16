@@ -4,13 +4,12 @@ class Api
         url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=#{ingredient}"
         response = Net::HTTP.get(URI(url)) 
         meals = JSON.parse(response)["meals"] # provides and array of meals base on ingredient provided
-        binding.pry 
+        
         if !meals 
             puts " "
             puts "The ingredient you provided was not valid."
             puts " "
             puts "Some popular ingredients you can try are: chicken, salmon, beef, pork and avocado."
-            puts " "
         else 
             new_ingredient = Ingredient.new(ingredient) #instance of ingredient is created
             meals.each do |meal|

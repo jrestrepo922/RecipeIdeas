@@ -26,7 +26,7 @@ class Cli
 
 
                 self.provide_meal_recipe(meal) 
-                binding.pry
+
             elsif input == "list"  
 
                 self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
@@ -91,7 +91,6 @@ class Cli
         @ingredient = gets.strip.downcase.gsub(" ","_")
 
         if (@ingredient == ""  ||  @ingredient == " " || @ingredient == nil)
-            puts " "
             puts "Input can not be left blank."
             puts " "
 
@@ -102,11 +101,15 @@ class Cli
         #this class method along with Meal class will make a bunch of ojects
 
     
-        Api.get_meals(@ingredient)
+        meals = Api.get_meals(@ingredient)
         # if @ingredient = dfasdfasdfa than meals = nil 
         # if meals == nil than rerun this entire thing. 
 
-        binding.pry 
+        if !meals 
+            prompt_ingredient 
+        end 
+
+
         
         #what do we want to do with this objecst? 
         #we want to provide a list will do that in a method 
