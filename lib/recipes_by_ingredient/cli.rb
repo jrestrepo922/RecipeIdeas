@@ -86,7 +86,16 @@ class Cli
         puts " "
         puts "Please provide an ingredient so we can provide you a list of tasty recipies"
         puts " "
+        
         @ingredient = gets.strip.downcase.gsub(" ","_")
+
+        if (@ingredient == ""  ||  @ingredient == " " || @ingredient == nil)
+            puts " "
+            puts "Input can not be left blank."
+            puts " "
+
+            prompt_ingredient 
+        end 
 
         #this class method along with Meal class will make a bunch of ojects
         Api.get_meals(@ingredient)
@@ -96,7 +105,7 @@ class Cli
         #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
             #we can solve this issue by using Ingredient.find_by_ingredient
             #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
-        if Ingredient.find_by_ingredient(@ingredient) && (@ingredient != ""  && @ingredient != " " && @ingredient != nil)
+        if Ingredient.find_by_ingredient(@ingredient) 
             self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
         else
             puts " "
