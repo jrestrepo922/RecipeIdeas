@@ -82,6 +82,7 @@ class Cli
           puts "type 'list' to see the list again and type 'exit' to exit."  
     end 
 
+
     def prompt_ingredient
         puts " "
         puts "Please provide an ingredient so we can provide you a list of tasty recipies"
@@ -94,28 +95,35 @@ class Cli
             puts "Input can not be left blank."
             puts " "
 
-            prompt_ingredient 
+            prompt_ingredient
+             
         end 
 
         #this class method along with Meal class will make a bunch of ojects
+
+    
         Api.get_meals(@ingredient)
-        puts " "
+        # if @ingredient = dfasdfasdfa than meals = nil 
+        # if meals == nil than rerun this entire thing. 
+
+        binding.pry 
+        
         #what do we want to do with this objecst? 
         #we want to provide a list will do that in a method 
         #self.display_meals(Meal.all) this is incorrect becasue it will pass all the Meal objects in the array without filtering by the current ingredient
             #we can solve this issue by using Ingredient.find_by_ingredient
             #this returns  an ingredient object with many meal objects tide to that specific string ingredient provided 
-        if Ingredient.find_by_ingredient(@ingredient) 
+        #if Ingredient.find_by_ingredient(@ingredient) 
             self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
-        else
-            puts " "
-            puts "The ingredient you provided was not valid."
-            puts " "
-            puts "Some popular ingredients you can try are: chicken, salmon, beef, pork and avocado."
+        #else
+            #puts " "
+            #puts "The ingredient you provided was not valid."
+            #puts " "
+            #puts "Some popular ingredients you can try are: chicken, salmon, beef, pork and avocado."
 
 
-            prompt_ingredient
-        end 
+            #prompt_ingredient
+        #end 
     end 
 
     
