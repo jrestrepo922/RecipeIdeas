@@ -44,16 +44,18 @@ class Cli
 
             elsif input == "list"  
 
+                puts " "
                 # Displays the list of the current ingredient.
                 self.display_meals(Ingredient.find_by_ingredient(@ingredient).meals)
 
             elsif  input == "ingredient"  
-                
+                puts " "
                 self.prompt_ingredient
 
             else  
 
                 # Takes care of any other inputs provided 
+                puts " "
                 puts " Please try again and choose one of the options given."
                 puts " "
 
@@ -129,7 +131,8 @@ class Cli
         puts " "
         
         @ingredient = gets.strip.downcase.gsub(" ","_")
-
+        puts " "
+        
         # if the @ingredient is an empty string, nil or string with only a space enter loop.
         # keep looping until the @ingredient no longer is an  empty string, nil or string with only a space
         while  (@ingredient == ""  ||  @ingredient == " " || @ingredient == nil) do
@@ -137,6 +140,7 @@ class Cli
             puts "Input can not be left blank try again."
             puts " "
             @ingredient = gets.strip.downcase.gsub(" ","_")
+            puts " "
 
         end 
 
@@ -155,6 +159,7 @@ class Cli
             puts "The ingredient you provided was not valid."
             puts " "
             puts "Some popular ingredients you can try are: chicken, salmon, beef, pork and avocado."  
+            puts " "
             false 
 
         else 
