@@ -1,6 +1,6 @@
 class Api 
 
-    #Creates meals objects and ingredient object from the Api and relates them to each other. 
+    #Creates meal objects and ingredient object from the Api and relates them to each other. 
     def self.get_meals(ingredient)
         
         url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=#{ingredient}"
@@ -22,7 +22,7 @@ class Api
     end 
 
 
-    #adds addtional details to a choosen meal object
+    #adds addtional details to a chosen meal object
     def self.get_meal_details(meal)
         
         url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{meal.meal_id}"

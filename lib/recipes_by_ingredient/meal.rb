@@ -7,7 +7,7 @@ class Meal
 
     def initialize(name: , meal_id: , ingredient:) 
         @name = name                 # Passed from the Api
-        @meal_id = meal_id           # Passed form the Api
+        @meal_id = meal_id           # Passed from the Api
         @ingredient = ingredient     # Passed from the @ingredients 
         @ingredients = [] 
         @measures = [] 

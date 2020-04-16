@@ -1,6 +1,6 @@
 class Cli 
 
-    # Run instance method handles all the ouput and input for the user. 
+    # Run instance method handles all the output and input for the user. 
     def run
 
         puts " "
@@ -21,22 +21,22 @@ class Cli
         # Prints options for the user. 
         self.prompt 
 
-        # Takes an input based on the options provided to user. 
+        # Takes an input based on the options provided by the user. 
         input = gets.strip.downcase
        
         # Logic for the menu.
         while input != "exit"
 
-            # Inputs must be within the list numbers provided.
+            # Inputs must be within the list of numbers provided.
             if input.to_i > 0 && input.to_i <= Ingredient.find_by_ingredient(@ingredient).meals.length
 
-                # Looks throught Ingredients.all and compares ingredient instance getter method to the string pass in @ingredient.
-                # If is a match returns the matching ingredient object which has many meals (getter method) and a specific element in the array is selected and set equals to meal.
+                # Looks through Ingredients.all and compares ingredient instance getter method to the string pass in @ingredient.
+                # If is a match it returns the matching ingredient object which has many meals (getter method) and a specific element in the array is selected and set equals to meal.
                 meal = Ingredient.find_by_ingredient(@ingredient).meals[input.to_i - 1]
 
-                # Checks to see if a recepy was already created. 
-                # If is already created skip this line and provide the recipe details.
-                # If not create the details and add to the meal object 
+                # Checks to see if a recipe was already created. 
+                # If it is already created skip this line and provide the recipe details.
+                # If not create the details and add to the meal object. 
                 Api.get_meal_details(meal) if !meal.instructions 
 
                 # Print Recipe details 
@@ -59,14 +59,14 @@ class Cli
 
             end 
 
-            # Once it travel trough all the logic the options are provided again and input requested and evaluated by the while loop again.
-            # This will be and endless loop unless input is equal to "exit".
+            # Once it travels trough all the logic, the options are provided again. Furthermore, input requested and evaluated by the while loop again.
+            # This will be an endless loop unless input is equal to "exit".
             prompt
             input = gets.strip.downcase
 
         end 
 
-        # If input equal to exit, the loop is exited and a farewell message prints. 
+        # If input is equal to exit, the loop is exited and a farewell message prints. 
         puts " "
         puts "Farewell you aspiring cook!!"
         puts " "
@@ -92,9 +92,9 @@ class Cli
         puts " "
         puts "Picture Link: #{meal.picture}"
         puts " "
-        puts "Catergory: #{meal.category}"
+        puts "Category: #{meal.category}"
         puts " "
-        puts "Ingredients and their quantities"
+        puts "Ingredients and their Quantities"
         meal.ingredients.each_with_index do |ingredient, index|
             puts "#{ingredient} - #{meal.measures[index]}"
         end 
@@ -125,7 +125,7 @@ class Cli
     # Prints out a list of the meal objects 
     def prompt_ingredient
 
-        puts "Please provide an ingredient so we can provide you a list of tasty recipies"
+        puts "Please provide an ingredient so we can provide you a list of tasty recipes!"
         puts " "
         
         @ingredient = gets.strip.downcase.gsub(" ","_")
@@ -148,7 +148,7 @@ class Cli
         !Ingredient.find_by_ingredient(@ingredient) ? validate_meals = Api.get_meals(@ingredient) : validate_meals = true
 
         # If validate_meals is true than the condition is false and the if statement is not enter and the list of meals will display and return true
-        # If validate_meals in false than the condition is true and the if statment is enter and an error message will be display to user and will return false
+        # If validate_meals in false than the condition is true and the if statment is enter an error message will be displayed to the user and will return false
         if !validate_meals 
 
             puts " "

@@ -1,6 +1,6 @@
 # Recipes By Ingredient 
 
-Provides users with a list of dishes based on a main ingredient provided. A dish can be pick and recipes will be reveal. 
+Provides users with a list of dishes based on a main ingredient provided. A dish can be picked and recipes will be revealed. 
 
 ## Github Repo 
 
