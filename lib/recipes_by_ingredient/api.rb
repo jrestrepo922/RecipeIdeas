@@ -5,12 +5,7 @@ class Api
         response = Net::HTTP.get(URI(url)) 
         meals = JSON.parse(response)["meals"] # provides and array of meals base on ingredient provided
         
-        if !meals 
-            puts " "
-            puts "The ingredient you provided was not valid."
-            puts " "
-            puts "Some popular ingredients you can try are: chicken, salmon, beef, pork and avocado."
-        else 
+        if meals
             new_ingredient = Ingredient.new(ingredient) #instance of ingredient is created
             meals.each do |meal|
                 new_meal = Meal.new(name: meal["strMeal"], meal_id: meal["idMeal"], ingredient: ingredient)

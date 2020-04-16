@@ -1,23 +1,24 @@
 class Cli 
 
-    def welcome
-        puts " "
-        puts "Welcome to the RecipesByIngredient App!"
-    end 
 
     def run
 
+        puts " "
+        puts "Welcome to RecipesByIngredient App!"
+
         self.prompt_ingredient
+
+
 
         self.prompt 
 
         #need to take in the new input from the choices provided 
         input = gets.strip.downcase
-        
+       
         ## options base on the input taken. Remember to use validation 
             #if a number is typed
 
-        while input != 'exit'
+        while input != "exit"
 
             if input.to_i > 0 && input.to_i <= Ingredient.find_by_ingredient(@ingredient).meals.length
                 # I can see that the meal objects provided by Ingredient.find_by_ingredient(@ingredient).meals have meal_id
@@ -48,7 +49,9 @@ class Cli
         puts " "
         puts "Farewell you aspiring cook!!"
         puts " "
+
     end 
+
 
     def display_meals(meals)
         meals.each_with_index { |meal, index|
@@ -76,6 +79,7 @@ class Cli
         puts " " 
         puts "Video: #{meal.video}" if meal.video
         puts " " if meal.video
+        puts "------------------------------------------------------"
     end 
 
     def prompt
@@ -86,35 +90,50 @@ class Cli
     end 
 
 
+
+
     def prompt_ingredient
         puts " "
         puts "Please provide an ingredient so we can provide you a list of tasty recipies"
         puts " "
         
         @ingredient = gets.strip.downcase.gsub(" ","_")
-
+        while  (@ingredient == ""  ||  @ingredient == " " || @ingredient == nil) do
         # this will only make it to the get meals class method of the Api class if is not an empty string 
-        if (@ingredient == ""  ||  @ingredient == " " || @ingredient == nil)
-            puts "Input can not be left blank."
+            puts "Input can not be left blank try again."
             puts " "
-
-            self.run 
-             
+            @ingredient = gets.strip.downcase.gsub(" ","_")
         end 
+
+    
 
         #this class method along with Meal class will make a bunch of ojects
 
-    
-       valdiate_meals = Api.get_meals(@ingredient)
+        # at this binding.pry nothing has been made in Ingredients.all the first time it passes through here
+        # the second time something has been made and if the ingredient already exist just display it do no make it again.
+            # validate_meals is nil when the if statment is true so when meals exist do not run Api
+        #binding.pry  
+
+        !Ingredient.find_by_ingredient(@ingredient) ? valdiate_meals = Api.get_meals(@ingredient) : valdiate_meals = true
+
+
+        #valdiate_meals = Api.get_meals(@ingredient)  if !Ingredient.find_by_ingredient(@ingredient)
+        #binding.pry 
+        
+        #validate_meals = Api.get_meals(@ingredient)  if !Ingredient.find_by_ingredient(@ingredient) #meals exist do not run Api
         # if @ingredient = dfasdfasdfa than meals = nil 
         # if meals == nil than rerun this entire thing. 
 
-        if !valdiate_meals
-            self.run
+        if !valdiate_meals 
+            puts " "
+            puts "The ingredient you provided was not valid."
+            puts " "
+            puts "Some popular ingredients you can try are: chicken, salmon, beef, pork and avocado."
+          
             
-        end 
+        else 
        
-
+ 
         
         #what do we want to do with this objecst? 
         #we want to provide a list will do that in a method 
@@ -132,7 +151,7 @@ class Cli
 
             #prompt_ingredient
         #end 
-
+        end
     end 
 
     

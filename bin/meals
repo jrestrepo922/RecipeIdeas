@@ -3,6 +3,4 @@
 require_relative "../lib/enviroment"
 
 
-cli = Cli.new
-cli.welcome
-cli.run
+Cli.new.run
